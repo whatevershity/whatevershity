@@ -73,7 +73,7 @@ function App() {
               <video
                 ref={videoRef}
                 className="hero__video"
-                src="/hero.mp4?v=subenglish"
+                src="/subenglish.mp4"
                 muted
                 loop
                 playsInline
