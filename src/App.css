@@ -44,7 +44,7 @@
   width: clamp(4.5rem, 12vw, 5.75rem);
   height: clamp(4.5rem, 12vw, 5.75rem);
   border-radius: 50%;
-  background: rgb(0 0 0 / 38%);
+  background: rgb(0 0 0 / 22%);
   color: #fff;
   transition:
     opacity 0.25s ease,
@@ -75,7 +75,7 @@
 
 .hero__playback:focus-visible .hero__playback-icon,
 .hero__playback-icon:hover {
-  background: rgb(0 0 0 / 50%);
+  background: rgb(0 0 0 / 32%);
   transform: scale(1.04);
 }
 
