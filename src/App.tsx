@@ -121,7 +121,8 @@ function App() {
                   </svg>
                 ) : (
                   <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8.2 5.1a1 1 0 0 1 1.53-.85l10.1 6.4a1 1 0 0 1 0 1.7l-10.1 6.4A1 1 0 0 1 8 18V6a1 1 0 0 1 .2-.9z" />
+                    {/* Same height as pause bars (y 4→20); nudged right for optical center */}
+                    <path d="M9 4v16l11-8z" />
                   </svg>
                 )}
               </span>
