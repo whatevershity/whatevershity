@@ -95,9 +95,6 @@
 
 .hero__sound {
   pointer-events: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
   opacity: 0.4;
   letter-spacing: 0.04em;
   text-transform: lowercase;
@@ -111,18 +108,6 @@
 
 .hero__sound[aria-pressed="true"] {
   opacity: 0.7;
-}
-
-.hero__sound-dot {
-  width: 0.5em;
-  height: 0.5em;
-  border-radius: 50%;
-  border: 1px solid currentColor;
-  transition: background-color 0.3s ease;
-}
-
-.hero__sound-dot[data-on="true"] {
-  background-color: currentColor;
 }
 
 .hero__identity {

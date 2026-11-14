@@ -61,11 +61,6 @@ function App() {
               aria-pressed={soundOn}
               onClick={toggleSound}
             >
-              <span
-                className="hero__sound-dot"
-                data-on={soundOn}
-                aria-hidden="true"
-              />
               sound?
             </button>
           </div>
