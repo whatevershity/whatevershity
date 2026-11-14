@@ -24,7 +24,7 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   background-color: var(--wb950);
   cursor: pointer;
 }
