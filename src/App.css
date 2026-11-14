@@ -83,7 +83,7 @@
   width: min(42vh, 70vw);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   font-size: 0.925em;
   font-weight: 200;
   letter-spacing: 0.04em;
@@ -91,12 +91,6 @@
   z-index: 6;
   pointer-events: none;
   transition: transform 0.5s ease-out;
-}
-
-.hero__clock {
-  opacity: 0.4;
-  font-variant-numeric: tabular-nums;
-  text-transform: lowercase;
 }
 
 .hero__sound {

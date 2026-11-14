@@ -2,18 +2,9 @@ import { useEffect, useEffectEvent, useRef, useState } from 'react'
 import { NavIsland } from './components/NavIsland'
 import './App.css'
 
-function formatClock(date: Date) {
-  return date.toLocaleTimeString('en-GB', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  })
-}
-
 function App() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const heroRef = useRef<HTMLElement>(null)
-  const [clock, setClock] = useState(() => formatClock(new Date()))
   const [soundOn, setSoundOn] = useState(false)
   const [playing, setPlaying] = useState(false)
 
@@ -27,14 +18,6 @@ function App() {
     hero.style.setProperty('--mouse-x-offset', `${x.toFixed(2)}px`)
     hero.style.setProperty('--mouse-y-offset', `${y.toFixed(2)}px`)
   })
-
-  useEffect(() => {
-    const tick = window.setInterval(() => {
-      setClock(formatClock(new Date()))
-    }, 1000)
-
-    return () => window.clearInterval(tick)
-  }, [])
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -72,7 +55,6 @@ function App() {
       <main>
         <section className="hero" ref={heroRef} aria-label="Hero">
           <div className="hero__topbar">
-            <span className="hero__clock">{clock}</span>
             <button
               type="button"
               className="hero__sound"
