@@ -49,9 +49,6 @@ function App() {
 
     const next = !soundOn
     video.muted = !next
-    if (next) {
-      void video.play()
-    }
     setSoundOn(next)
   }
 
@@ -83,11 +80,10 @@ function App() {
               ref={videoRef}
               className="hero__video"
               src="/hero.mp4"
-              autoPlay
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
             />
           </div>
 
