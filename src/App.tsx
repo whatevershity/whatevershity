@@ -15,6 +15,7 @@ function App() {
   const heroRef = useRef<HTMLElement>(null)
   const [clock, setClock] = useState(() => formatClock(new Date()))
   const [soundOn, setSoundOn] = useState(false)
+  const [playing, setPlaying] = useState(false)
 
   const onPointerMove = useEffectEvent((event: PointerEvent) => {
     const hero = heroRef.current
@@ -52,6 +53,18 @@ function App() {
     setSoundOn(next)
   }
 
+  const togglePlayback = () => {
+    const video = videoRef.current
+    if (!video) return
+
+    if (video.paused) {
+      void video.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
+    } else {
+      video.pause()
+      setPlaying(false)
+    }
+  }
+
   return (
     <>
       <NavIsland soundOn={soundOn} onToggleSound={toggleSound} />
@@ -75,7 +88,10 @@ function App() {
             </button>
           </div>
 
-          <div className="hero__frame">
+          <div
+            className={`hero__frame${playing ? ' is-playing' : ''}`}
+            onClick={togglePlayback}
+          >
             <video
               ref={videoRef}
               className="hero__video"
@@ -84,7 +100,32 @@ function App() {
               loop
               playsInline
               preload="metadata"
+              onPlay={() => setPlaying(true)}
+              onPause={() => setPlaying(false)}
             />
+
+            <button
+              type="button"
+              className="hero__playback"
+              aria-label={playing ? 'Pause video' : 'Play video'}
+              onClick={(event) => {
+                event.stopPropagation()
+                togglePlayback()
+              }}
+            >
+              <span className="hero__playback-icon" aria-hidden="true">
+                {playing ? (
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="5" y="4" width="5" height="16" rx="1" />
+                    <rect x="14" y="4" width="5" height="16" rx="1" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.2 5.1a1 1 0 0 1 1.53-.85l10.1 6.4a1 1 0 0 1 0 1.7l-10.1 6.4A1 1 0 0 1 8 18V6a1 1 0 0 1 .2-.9z" />
+                  </svg>
+                )}
+              </span>
+            </button>
           </div>
 
           <p className="hero__identity">moje życie to koszmar</p>
