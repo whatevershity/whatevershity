@@ -54,59 +54,61 @@ function App() {
 
       <main>
         <section className="hero" ref={heroRef} aria-label="Hero">
-          <div className="hero__topbar">
-            <button
-              type="button"
-              className="hero__sound"
-              aria-pressed={soundOn}
-              onClick={toggleSound}
+          <div className="hero__stage">
+            <div className="hero__topbar">
+              <button
+                type="button"
+                className="hero__sound"
+                aria-pressed={soundOn}
+                onClick={toggleSound}
+              >
+                sound?
+              </button>
+            </div>
+
+            <div
+              className={`hero__frame${playing ? ' is-playing' : ''}`}
+              onClick={togglePlayback}
             >
-              sound?
-            </button>
+              <video
+                ref={videoRef}
+                className="hero__video"
+                src="/hero.mp4"
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                onPlay={() => setPlaying(true)}
+                onPause={() => setPlaying(false)}
+              />
+
+              <button
+                type="button"
+                className="hero__playback"
+                aria-label={playing ? 'Pause video' : 'Play video'}
+                onClick={(event) => {
+                  event.stopPropagation()
+                  togglePlayback()
+                }}
+              >
+                <span className="hero__playback-icon" aria-hidden="true">
+                  {playing ? (
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="5" y="4" width="5" height="16" rx="1" />
+                      <rect x="14" y="4" width="5" height="16" rx="1" />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      {/* Same height as pause bars (y 4→20); nudged right for optical center */}
+                      <path d="M9 4v16l11-8z" />
+                    </svg>
+                  )}
+                </span>
+              </button>
+            </div>
+
+            <p className="hero__identity">moje życie to koszmar</p>
           </div>
-
-          <div
-            className={`hero__frame${playing ? ' is-playing' : ''}`}
-            onClick={togglePlayback}
-          >
-            <video
-              ref={videoRef}
-              className="hero__video"
-              src="/hero.mp4"
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              onPlay={() => setPlaying(true)}
-              onPause={() => setPlaying(false)}
-            />
-
-            <button
-              type="button"
-              className="hero__playback"
-              aria-label={playing ? 'Pause video' : 'Play video'}
-              onClick={(event) => {
-                event.stopPropagation()
-                togglePlayback()
-              }}
-            >
-              <span className="hero__playback-icon" aria-hidden="true">
-                {playing ? (
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <rect x="5" y="4" width="5" height="16" rx="1" />
-                    <rect x="14" y="4" width="5" height="16" rx="1" />
-                  </svg>
-                ) : (
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    {/* Same height as pause bars (y 4→20); nudged right for optical center */}
-                    <path d="M9 4v16l11-8z" />
-                  </svg>
-                )}
-              </span>
-            </button>
-          </div>
-
-          <p className="hero__identity">moje życie to koszmar</p>
         </section>
       </main>
     </>
